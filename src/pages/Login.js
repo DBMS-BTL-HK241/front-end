@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { login } from '../../services/apiService';
+import { login } from '../services/apiService';
 
-function Login({ setToken }) {
+function Login({ setToken, setRole }) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
@@ -12,10 +12,12 @@ function Login({ setToken }) {
 
         try {
             const response = await login({ username, password });
-            const { token } = response.data;
+            const { token, role } = response.data;
 
             localStorage.setItem('token', token);
+            localStorage.setItem('role', role);
             setToken(token);
+            setRole(role);
             navigate('/profile');
         } catch (error) {
             console.error('Login failed:', error);

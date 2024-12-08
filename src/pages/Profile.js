@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { fetchProfile, logout } from '../../services/apiService';
+import { fetchProfile, logout } from '../services/apiService';
 
 function Profile() {
     const [profileData, setProfileData] = useState(null);

@@ -15,6 +15,7 @@ API.interceptors.request.use((config) => {
 
 // Authentication APIs
 export const login = (credentials) => API.post('/auth/login', credentials);
+export const register = (credentials) => API.post('/auth/register', credentials);
 export const logout = () => {
     localStorage.removeItem('token');
 };

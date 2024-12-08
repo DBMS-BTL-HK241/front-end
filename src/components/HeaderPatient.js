@@ -13,7 +13,7 @@ function Header() {
         <header className="bg-blue-600 text-white py-4 shadow-md">
             <div className="container mx-auto flex justify-between items-center">
                 <h1 className="text-lg font-bold">
-                    <Link to="/profile">DBMS</Link>
+                    <Link to="/profile">Patient Dashboard</Link>
                 </h1>
                 <nav>
                     <ul className="flex space-x-4">
