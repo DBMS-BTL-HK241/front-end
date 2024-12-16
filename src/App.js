@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import Login from './pages/Login';
 import Profile from './pages/Profile';
 import Register from './pages/Register';
+import Medicine from './pages/Medicine/Medicine';
 import Appointments from './pages/Patient/Appointments';
 import HeaderPatient from './components/HeaderPatient';
 import HeaderDoctor from './components/HeaderDoctor';
@@ -48,6 +49,14 @@ function App() {
           element={
             <ProtectedRoute>
               <Profile />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/medicine"
+          element={
+            <ProtectedRoute>
+              <Medicine />
             </ProtectedRoute>
           }
         />
