@@ -4,6 +4,8 @@ import Login from './pages/Login';
 import Profile from './pages/Profile';
 import Register from './pages/Register';
 import Appointments from './pages/Patient/Appointments';
+import AppointmentsChart from './pages/Admin/AppointmentsChart';
+import AppointmentsCalendar from './pages/Doctor/AppointmentsCalendar';
 import HeaderPatient from './components/HeaderPatient';
 import HeaderDoctor from './components/HeaderDoctor';
 import HeaderAdmin from './components/HeaderAdmin';
@@ -40,6 +42,22 @@ function App() {
           element={
             <ProtectedRoute>
               <Appointments />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/appointmentschart"
+          element={
+            <ProtectedRoute>
+              <AppointmentsChart />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/AppointmentsCalendar"
+          element={
+            <ProtectedRoute>
+              <AppointmentsCalendar />
             </ProtectedRoute>
           }
         />

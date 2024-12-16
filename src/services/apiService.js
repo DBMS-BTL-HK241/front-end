@@ -28,6 +28,15 @@ export const fetchAppointments = () => API.get('api/appointments');
 export const createAppointment = (data) => API.post('api/appointments', data);
 export const updateAppointment = (AppointmentID, data) => API.put(`api/appointments/${AppointmentID}`, data);
 export const deleteAppointment = (AppointmentID) => API.delete(`api/appointments/${AppointmentID}`);
+export const fetchAppointmentsChart = () => API.get(`api/appointments/statistics/monthly`);
+export const fetchAppointmentsCalendar = (start, end) => {
+    return API.get('api/appointments/calendar', {
+        params: {
+            start,
+            end,
+        },
+    });
+};
 
 // Patient-related APIs
 export const fetchPatients = () => API.get('api/patients');

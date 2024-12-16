@@ -20,7 +20,7 @@ const Appointments = () => {
         DoctorID: 0,
         ClinicID: 0,
         AppointmentDate: '',
-        Status: 'Đã lên lịch',
+        Status: 'Scheduled',
     });
     const [isEditing, setIsEditing] = useState(false);
 
@@ -86,7 +86,7 @@ const Appointments = () => {
                 await createAppointment(formData);
             }
             fetchAppointmentsData();
-            setFormData({ AppointmentID: '', PatientID: '', DoctorID: '', ClinicID: '', AppointmentDate: '', Status: 'Đã lên lịch' });
+            setFormData({ AppointmentID: '', PatientID: '', DoctorID: '', ClinicID: '', AppointmentDate: '', Status: 'Scheduled' });
             setIsEditing(false);
         } catch (error) {
             console.error('Error saving appointment:', error);
@@ -201,9 +201,9 @@ const Appointments = () => {
                         onChange={handleInputChange}
                         required
                     >
-                        <option value="Đã lên lịch">Đã lên lịch</option>
-                        <option value="Hủy bỏ">Hủy bỏ</option>
-                        <option value="Hoàn thành">Hoàn thành</option>
+                        <option value="Scheduled">Scheduled</option>
+                        <option value="Cancelled">Cancelled</option>
+                        <option value="Completed">Completed</option>
                     </select>
                 </div>
                 <button
