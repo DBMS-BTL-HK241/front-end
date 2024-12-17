@@ -108,7 +108,7 @@ const Appointments = () => {
     };
 
     return (
-        <div className="container mx-auto p-4">
+        <div className="container mx-auto p-4 mt-[100px]">
             <h1 className="text-2xl font-bold mb-4 text-center">Appointments</h1>
 
             <form

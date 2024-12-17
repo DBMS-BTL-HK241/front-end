@@ -20,16 +20,19 @@ function App() {
   }, []);
 
   const ProtectedRoute = ({ children }) => {
-    return token ? (
-      <>
-        {role === 'Patients' && <HeaderPatient />}
-        {role === 'Doctor' && <HeaderDoctor />}
-        {role === 'Admin' && <HeaderAdmin />}
-        {children}
-      </>
-    ) : (
-      <Navigate to="/login" />
-    );
+    if (!token) {
+      return <Navigate to="/login" />;
+    }
+    if (role === 'Admin') {
+      return <HeaderAdmin>{children}</HeaderAdmin>;
+    }
+    if (role === 'Patients') {
+      return <><HeaderPatient />{children} </>;
+    }
+    if (role === 'Doctor') {
+      return <><HeaderDoctor />{children} </>;
+    }
+
   };
 
   return (

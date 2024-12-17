@@ -89,7 +89,7 @@ const AppointmentsChart = () => {
 
     return (
         <div>
-            <h3>Appointments Chart</h3>
+            <h1 className="text-2xl font-bold mb-4 text-center">Appointments Chart</h1>
             <label>
                 Filter by Year:{" "}
                 <select value={filterYear} onChange={(e) => setFilterYear(e.target.value)}>

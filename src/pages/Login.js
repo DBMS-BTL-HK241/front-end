@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { login } from '../services/apiService';
 
 function Login({ setToken, setRole }) {
@@ -62,6 +62,15 @@ function Login({ setToken, setRole }) {
                         Login
                     </button>
                 </form>
+
+                <div className="mt-4 text-center">
+                    <p className="text-sm text-gray-600">
+                        Don't have an account?{' '}
+                        <Link to="/register" className="text-indigo-600 hover:text-indigo-700 font-medium">
+                            Register here
+                        </Link>
+                    </p>
+                </div>
             </div>
         </div>
     );

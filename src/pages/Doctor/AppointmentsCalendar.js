@@ -1,6 +1,5 @@
 import React from 'react';
 import { fetchAppointmentsCalendar } from '../../services/apiService';
-// import 'rsuite/dist/rsuite.min.css';
 import { Calendar, Badge, List, Stack } from 'rsuite';
 
 function getTodoList(date) {
@@ -46,14 +45,18 @@ const AppointmentsCalendar = () => {
     };
 
     return (
-        <Stack direction="row" spacing={10} alignItems="flex-start" wrap>
-            <Calendar
-                compact
-                renderCell={renderCell}
-                onSelect={handleSelect}
-            />
-            <TodoList date={selectedDate} />
-        </Stack>
+        <div className="mt-[100px]">
+            <h1 className="text-2xl font-bold mb-4 text-center">Appointments Calendar</h1>
+            <Stack direction="row" spacing={10} alignItems="flex-start" wrap>
+                <Calendar
+                    compact
+                    renderCell={renderCell}
+                    onSelect={handleSelect}
+                />
+                <TodoList date={selectedDate} />
+            </Stack>
+        </div>
+
     );
 };
 
