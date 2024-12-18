@@ -9,6 +9,7 @@ import AppointmentsCalendar from './pages/Doctor/AppointmentsCalendar';
 import HeaderPatient from './components/HeaderPatient';
 import HeaderDoctor from './components/HeaderDoctor';
 import HeaderAdmin from './components/HeaderAdmin';
+import Payments from './components/Payments';
 
 function App() {
   const [token, setToken] = useState(localStorage.getItem('token'));
@@ -73,6 +74,7 @@ function App() {
           }
         />
         <Route path="/" element={<Navigate to={token ? "/profile" : "/login"} />} />
+        <Route path="/payments" element={token ? <Payments /> : <Navigate to="/login" />} />
       </Routes>
     </Router>
   );
