@@ -1,9 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Login from './components/Login';
-import Register from './components/Register';
-import Profile from './components/Profile';
-import Payments from './components/Payments';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Login from './pages/Login';
 import Profile from './pages/Profile';
@@ -17,7 +12,6 @@ import HeaderAdmin from './components/HeaderAdmin';
 
 function App() {
   const [token, setToken] = useState(localStorage.getItem('token'));
-
   const [role, setRole] = useState(localStorage.getItem('role')); // Thêm role
 
   useEffect(() => {
@@ -44,11 +38,6 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/login" element={<Login setToken={setToken} />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/profile" element={token ? <Profile /> : <Login setToken={setToken} />} />
-        <Route path="/payments" element={<Payments />} />
-        <Route path="/" element={<Login setToken={setToken} />} />
         <Route path="/login" element={<Login setToken={setToken} setRole={setRole} />} />
         <Route path="/register" element={<Register setToken={setToken} setRole={setRole} />} />
         <Route
