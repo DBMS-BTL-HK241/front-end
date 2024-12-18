@@ -4,15 +4,15 @@ import MedicineTable from "../../components/Medicine/MedicineTable";
 import MedicineForm from "../../components/Medicine/MedicineForm";
 import Modal from "../../components/Medicine/Modal";
 
-function Profile() {
-  const [profileData, setProfileData] = useState(null);
+function Medicine() {
+  // const [profileData, setProfileData] = useState(null);
   const [medicines, setMedicines] = useState([]);
   const [openForm, setOpenForm] = useState(false);
   const [editMedicine, setEditMedicine] = useState(null);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    console.log(token);
+    // console.log(token);
 
     if (token) {
       axios
@@ -20,7 +20,8 @@ function Profile() {
           headers: { Authorization: `Bearer ${token}` },
         })
         .then((response) => {
-          setProfileData(response.data);
+          console.log("Successful !", response.data);
+          setMedicines(response.data);
         })
         .catch((error) => {
           console.error("Error fetching profile:", error);
@@ -30,30 +31,53 @@ function Profile() {
     }
   }, []);
 
-  if (!profileData) {
+  if (!medicines) {
     return <div>Loading...</div>;
   }
 
   // Thêm thuốc
   const handleAddMedicine = (medicine) => {
-    setMedicines([...medicines, { id: Date.now(), ...medicine }]);
+    console.log("Add medicine:", medicine);
+    setMedicines([...medicines, { ...medicine }]);
     setOpenForm(false);
   };
 
   // Chỉnh sửa thuốc
-  const handleEditMedicine = (updatedMedicine) => {
-    setMedicines(
-      medicines.map((med) =>
-        med.id === updatedMedicine.id ? updatedMedicine : med
-      )
-    );
-    setOpenForm(false);
-    setEditMedicine(null);
+  const handleEditMedicine = async (updatedMedicine) => {
+    const token = localStorage.getItem("token");
+    try {
+      await axios.put(`http://localhost:3001/medicine/`, updatedMedicine, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+      setMedicines(
+        medicines.map((med) =>
+          med.id === updatedMedicine.id ? updatedMedicine : med
+        )
+      );
+      setOpenForm(false);
+      setEditMedicine(null);
+    } catch (error) {
+      console.error("There was an error updating the medicine!", error);
+    }
   };
 
-  // Xóa thuốc
-  const handleDeleteMedicine = (id) => {
-    setMedicines(medicines.filter((med) => med.id !== id));
+  const handleDeleteMedicine = async (id) => {
+    const confirmed = window.confirm("Are you sure you want to delete this medicine?");
+    if (confirmed) {
+      const token = localStorage.getItem("token");
+      try {
+        await axios.delete(`http://localhost:3001/medicine/${id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
+        setMedicines(medicines.filter((medicine) => medicine.id !== id));
+      } catch (error) {
+        console.error("There was an error deleting the medicine!", error);
+      }
+    }
   };
 
   // Mở biểu mẫu
@@ -76,6 +100,7 @@ function Profile() {
           medicines={medicines}
           onEdit={(medicine) => {
             setEditMedicine(medicine);
+            console.log("Edit Medicine:", editMedicine);
             setOpenForm(true);
           }}
           onDelete={handleDeleteMedicine}
@@ -95,4 +120,4 @@ function Profile() {
   );
 }
 
-export default Profile;
+export default Medicine;
