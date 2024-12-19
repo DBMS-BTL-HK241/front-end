@@ -41,10 +41,41 @@ function HeaderAdmin({ children }) {
                             to="/profile"
                             className="block text-lg font-medium text-white transition-all hover:text-white hover:underline focus:outline-none focus:ring-2 focus:ring-white"
                         >
+                            Revenue
+                        </Link>
+                    </li>
+                    <li>
+                        <Link
+                            to="/profile"
+                            className="block text-lg font-medium text-white transition-all hover:text-white hover:underline focus:outline-none focus:ring-2 focus:ring-white"
+                        >
+                            Doctor management
+                        </Link>
+                    </li>
+                    <li>
+                        <Link
+                            to="/profile"
+                            className="block text-lg font-medium text-white transition-all hover:text-white hover:underline focus:outline-none focus:ring-2 focus:ring-white"
+                        >
+                            Clinic management
+                        </Link>
+                    </li>
+                    <li>
+                        <Link
+                            to="/profile"
+                            className="block text-lg font-medium text-white transition-all hover:text-white hover:underline focus:outline-none focus:ring-2 focus:ring-white"
+                        >
+                            Medicine management
+                        </Link>
+                    </li>
+                    <li>
+                        <Link
+                            to="/profile"
+                            className="block text-lg font-medium text-white transition-all hover:text-white hover:underline focus:outline-none focus:ring-2 focus:ring-white"
+                        >
                             Profile
                         </Link>
                     </li>
-
                 </ul>
 
                 <button
