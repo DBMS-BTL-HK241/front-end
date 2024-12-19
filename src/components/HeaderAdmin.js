@@ -27,33 +27,56 @@ function HeaderAdmin({ children }) {
           </h1>
         </div>
 
-        <ul className="space-y-8 mt-10">
-          <li>
-            <Link
-              to="/appointmentschart"
-              className="block text-lg font-medium text-white transition-all hover:text-white hover:underline focus:outline-none focus:ring-2 focus:ring-white"
-            >
-              Appointments Chart
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/payments"
-              className="relative text-lg font-medium transition-all hover:text-blue-300 group"
-            >
-              Payments
-              <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-white transition-all duration-300 group-hover:w-full"></span>
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/profile"
-              className="block text-lg font-medium text-white transition-all hover:text-white hover:underline focus:outline-none focus:ring-2 focus:ring-white"
-            >
-              Profile
-            </Link>
-          </li>
-        </ul>
+                <ul className="space-y-8 mt-10">
+                    <li>
+                        <Link
+                            to="/appointmentschart"
+                            className="block text-lg font-medium text-white transition-all hover:text-white hover:underline focus:outline-none focus:ring-2 focus:ring-white"
+                        >
+                            Appointments Chart
+                        </Link>
+                    </li>
+                    <li>
+                        <Link
+                            to="/revenue"
+                            className="block text-lg font-medium text-white transition-all hover:text-white hover:underline focus:outline-none focus:ring-2 focus:ring-white"
+                        >
+                            Revenue
+                        </Link>
+                    </li>
+                    <li>
+                        <Link
+                            to="/profile"
+                            className="block text-lg font-medium text-white transition-all hover:text-white hover:underline focus:outline-none focus:ring-2 focus:ring-white"
+                        >
+                            Doctor management
+                        </Link>
+                    </li>
+                    <li>
+                        <Link
+                            to="/profile"
+                            className="block text-lg font-medium text-white transition-all hover:text-white hover:underline focus:outline-none focus:ring-2 focus:ring-white"
+                        >
+                            Clinic management
+                        </Link>
+                    </li>
+                    <li>
+                        <Link
+                            to="/profile"
+                            className="block text-lg font-medium text-white transition-all hover:text-white hover:underline focus:outline-none focus:ring-2 focus:ring-white"
+                        >
+                            Medicine management
+                        </Link>
+                    </li>
+                    <li>
+                        <Link
+                            to="/profile"
+                            className="block text-lg font-medium text-white transition-all hover:text-white hover:underline focus:outline-none focus:ring-2 focus:ring-white"
+                        >
+                            Profile
+                        </Link>
+                    </li>
+                </ul>
 
         <button
           onClick={handleLogout}
