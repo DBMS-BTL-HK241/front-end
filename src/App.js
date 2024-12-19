@@ -74,7 +74,12 @@ function App() {
           }
         />
         <Route path="/" element={<Navigate to={token ? "/profile" : "/login"} />} />
-        <Route path="/payments" element={token ? <Payments /> : <Navigate to="/login" />} />
+        <Route path="/payments" element={
+          <ProtectedRoute>
+            <Payments />
+          </ProtectedRoute>
+          } 
+        />
       </Routes>
     </Router>
   );
