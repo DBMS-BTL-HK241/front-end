@@ -45,6 +45,7 @@ function Medicine() {
   // Chỉnh sửa thuốc
   const handleEditMedicine = async (updatedMedicine) => {
     const token = localStorage.getItem("token");
+    console.log("updated medicine:", updatedMedicine);
     try {
       await axios.put(`http://localhost:3001/medicine/`, updatedMedicine, {
         headers: {
@@ -99,8 +100,8 @@ function Medicine() {
         <MedicineTable
           medicines={medicines}
           onEdit={(medicine) => {
+            console.log("medicine2", medicine);
             setEditMedicine(medicine);
-            console.log("Edit Medicine:", editMedicine);
             setOpenForm(true);
           }}
           onDelete={handleDeleteMedicine}

@@ -24,7 +24,7 @@ function MedicineTable({ medicines, onEdit, onDelete }) {
               <td className="border border-gray-300 px-4 py-2">{medicine.quantity}</td>
               <td className="border border-gray-300 px-4 py-2">
                 <button
-                  onClick={() => onEdit(medicine)}
+                  onClick={() =>{onEdit(medicine); console.log('medicine', medicine)} }
                   className="text-blue-500 mr-2 hover:underline"
                 >
                   Edit
