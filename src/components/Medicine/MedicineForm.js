@@ -3,6 +3,7 @@ import axios from "axios";
 
 function MedicineForm({ onSubmit, onClose, initialData = {} }) {
   const [formData, setFormData] = useState({
+    id: initialData?.id || "",
     name: initialData?.name || "",
     dosage: initialData?.dosage || "",
     administration: initialData?.administration || "",
@@ -16,19 +17,10 @@ function MedicineForm({ onSubmit, onClose, initialData = {} }) {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    const token = localStorage.getItem("token");
-    try {
-      await axios.post('http://localhost:3001/medicines', formData, {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      });
+
       onSubmit(formData);
       onClose();
-    } catch (error) {
-      console.error("There was an error adding the medicine!", error);
-    }
+    
   };
 
   return (
