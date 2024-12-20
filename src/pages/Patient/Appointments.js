@@ -218,7 +218,7 @@ const Appointments = () => {
                 <thead className="bg-gray-200">
                     <tr>
                         <th className="px-4 py-2">Appointment ID</th>
-                        <th className="px-4 py-2">Patient</th>
+
                         <th className="px-4 py-2">Doctor</th>
                         <th className="px-4 py-2">Clinic</th>
                         <th className="px-4 py-2">Appointment Date</th>
@@ -230,7 +230,7 @@ const Appointments = () => {
                     {appointments.map((appointment) => (
                         <tr key={appointment.AppointmentID} className="border-t">
                             <td className="px-4 py-2">{appointment.AppointmentID}</td>
-                            <td className="px-4 py-2">{appointment.PatientName}</td>
+
                             <td className="px-4 py-2">{appointment.DoctorName}</td>
                             <td className="px-4 py-2">{appointment.ClinicName}</td>
                             <td className="px-4 py-2">{appointment.AppointmentDate}</td>
