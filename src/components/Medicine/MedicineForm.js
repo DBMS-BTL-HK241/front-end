@@ -39,7 +39,7 @@ function MedicineForm({ onSubmit, onClose, initialData = {} }) {
       <div>
         <label className="block font-medium mb-1">Dosage</label>
         <input
-          type="number"
+          type="text"
           name="dosage"
           value={formData.dosage}
           onChange={handleChange}
@@ -75,6 +75,17 @@ function MedicineForm({ onSubmit, onClose, initialData = {} }) {
           type="number"
           name="quantity"
           value={formData.quantity}
+          onChange={handleChange}
+          className="w-full border rounded px-3 py-2"
+          required
+        />
+      </div>
+      <div>
+        <label className="block font-medium mb-1">Price</label>
+        <input
+          type="number"
+          name="price"
+          value={formData.price}
           onChange={handleChange}
           className="w-full border rounded px-3 py-2"
           required

@@ -52,10 +52,10 @@ function HeaderDoctor() {
                             </li>
                             <li>
                                 <Link
-                                    to="/AppointmentsCalendar"
+                                    to="/prescription"
                                     className="relative text-lg font-medium transition-all hover:text-blue-300 group"
                                 >
-                                    Medicines
+                                    Prescriptions
                                     <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-white transition-all duration-300 group-hover:w-full"></span>
                                 </Link>
                             </li>

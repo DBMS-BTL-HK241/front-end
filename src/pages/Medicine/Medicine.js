@@ -36,11 +36,29 @@ function Medicine() {
   }
 
   // Thêm thuốc
-  const handleAddMedicine = (medicine) => {
-    console.log("Add medicine:", medicine);
-    setMedicines([...medicines, { ...medicine }]);
-    setOpenForm(false);
+  const handleAddMedicine = async (medicine) => {
+    const token = localStorage.getItem("token");
+    try {
+      const response = await axios.post("http://localhost:3001/medicine", medicine, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+  
+      // Cập nhật danh sách thuốc ngay sau khi thêm
+      setMedicines((prevMedicines) => {
+        const updatedMedicines = [...prevMedicines, response.data];
+        console.log("Updated medicines:", updatedMedicines);
+        return updatedMedicines;
+      });
+  
+      console.log("response", response.data);
+      setOpenForm(false);
+    } catch (error) {
+      console.error("There was an error adding the medicine!", error);
+    }
   };
+  
 
   // Chỉnh sửa thuốc
   const handleEditMedicine = async (updatedMedicine) => {

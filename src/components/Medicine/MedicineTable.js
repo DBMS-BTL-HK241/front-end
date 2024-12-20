@@ -11,6 +11,7 @@ function MedicineTable({ medicines, onEdit, onDelete }) {
             <th className="border border-gray-300 px-4 py-2">Administration</th>
             <th className="border border-gray-300 px-4 py-2">Side Effects</th>
             <th className="border border-gray-300 px-4 py-2">Quantity</th>
+            <th className="border border-gray-300 px-4 py-2">Price</th>
             <th className="border border-gray-300 px-4 py-2">Actions</th>
           </tr>
         </thead>
@@ -21,6 +22,7 @@ function MedicineTable({ medicines, onEdit, onDelete }) {
               <td className="border border-gray-300 px-4 py-2">{medicine.dosage}</td>
               <td className="border border-gray-300 px-4 py-2">{medicine.administration}</td>
               <td className="border border-gray-300 px-4 py-2">{medicine.sideEffects}</td>
+              <td className="border border-gray-300 px-4 py-2">{medicine.price}</td>
               <td className="border border-gray-300 px-4 py-2">{medicine.quantity}</td>
               <td className="border border-gray-300 px-4 py-2">
                 <button

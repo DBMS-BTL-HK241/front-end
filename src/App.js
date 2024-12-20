@@ -83,7 +83,7 @@ function App() {
             </ProtectedRoute>
           }
         />
-                <Route
+        <Route
           path="/prescription"
           element={
             <ProtectedRoute>
