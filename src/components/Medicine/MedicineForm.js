@@ -39,7 +39,7 @@ function MedicineForm({ onSubmit, onClose, initialData = {} }) {
       <div>
         <label className="block font-medium mb-1">Dosage</label>
         <input
-          type="text"
+          type="number"
           name="dosage"
           value={formData.dosage}
           onChange={handleChange}
