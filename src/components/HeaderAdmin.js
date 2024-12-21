@@ -46,7 +46,7 @@ function HeaderAdmin({ children }) {
                     </li>
                     <li>
                         <Link
-                            to="/profile"
+                            to="/doctorManagement"
                             className="block text-lg font-medium text-white transition-all hover:text-white hover:underline focus:outline-none focus:ring-2 focus:ring-white"
                         >
                             Doctor management
@@ -54,7 +54,7 @@ function HeaderAdmin({ children }) {
                     </li>
                     <li>
                         <Link
-                            to="/profile"
+                            to="/clinicManagement"
                             className="block text-lg font-medium text-white transition-all hover:text-white hover:underline focus:outline-none focus:ring-2 focus:ring-white"
                         >
                             Clinic management
