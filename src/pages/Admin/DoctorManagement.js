@@ -1,11 +1,12 @@
 // DoctorManagement.js
 
-import { getDoctorsWithPagination, fetchDoctorByName, createDoctor, updateDoctor, deleteDoctor } from '../../services/apiService';
+import { getDoctorsWithPagination, fetchDoctorsByName, createDoctor, updateDoctor, deleteDoctor } from '../../services/apiService';
 import { useEffect, useState } from 'react';
 
 const DoctorManagement = () => {
     const [doctors, setDoctors] = useState([]);
     const [searchName, setSearchName] = useState('');
+    const [searchNameMode, setSearchNameMode] = useState(false);
     const [editingDoctor, setEditingDoctor] = useState(null);
     const [showModal, setShowModal] = useState(false); // Trạng thái để điều khiển hiển thị modal
     const [doctorForm, setDoctorForm] = useState({
@@ -24,6 +25,7 @@ const DoctorManagement = () => {
 
     const [currentPage, setCurrentPage] = useState(1);  // Current page
     const [totalPages, setTotalPages] = useState(1);  // Total pages
+    const numRecordOfPage = 3
 
     const daysOfWeek = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 
@@ -33,7 +35,7 @@ const DoctorManagement = () => {
 
     const fetchDoctorsData = async (page) => {
         try {
-            const response = await getDoctorsWithPagination(page);
+            const response = await getDoctorsWithPagination(page, numRecordOfPage);
             setDoctors(response.data.doctors);
             setTotalPages(response.data.totalPages); // Giả sử API trả về tổng số trang
         } catch (error) {
@@ -48,13 +50,18 @@ const DoctorManagement = () => {
     };
 
     const handleSearch = async () => {
-        if (!searchName) return;
-        try {
-            const response = await fetchDoctorByName(searchName);
-            setDoctors(response.data);
-        } catch (error) {
-            console.error('Error searching doctor:', error);
+        if (!searchName) {
+            setSearchNameMode(false);
+        } else {
+            try {
+                const response = await fetchDoctorsByName(searchName);
+                setDoctors(response.data);
+                setSearchNameMode(true);
+            } catch (error) {
+                console.error('Error searching doctor:', error);
+            }
         }
+
     };
 
     // Handle form changes
@@ -133,7 +140,7 @@ const DoctorManagement = () => {
 
         try {
             await createDoctor({ ...doctorForm, WorkingHours: formattedWorkingHours });
-            fetchDoctorsData(); // Refresh the doctor list after adding
+            handlePageChange(1); // Refresh the doctor list after adding
             setShowModal(false); // Hide the modal after submitting
             setDoctorForm({
                 Name: '',
@@ -161,7 +168,7 @@ const DoctorManagement = () => {
         if (editingDoctor) {
             try {
                 await updateDoctor(editingDoctor.DoctorID, { ...doctorForm, WorkingHours: formattedWorkingHours });
-                fetchDoctorsData(); // Refresh the doctor list after updating
+                fetchDoctorsData(currentPage); // Refresh the doctor list after updating
                 setEditingDoctor(null);
                 setShowModal(false); // Hide the modal after submitting
                 setDoctorForm({
@@ -186,7 +193,7 @@ const DoctorManagement = () => {
     const handleDeleteDoctor = async (doctorId) => {
         try {
             await deleteDoctor(doctorId);
-            fetchDoctorsData(); // Refresh the doctor list after deletion
+            handlePageChange(1); // Refresh the doctor list after deletion
         } catch (error) {
             console.error('Error deleting doctor:', error);
         }
@@ -296,6 +303,22 @@ const DoctorManagement = () => {
                     className="px-4 py-2 bg-blue-500 text-white rounded mb-4"
                 >
                     Add Doctor
+                </button>
+            </div>
+
+            <div className={`${!searchNameMode ? "hidden" : ""}`}>
+                Result of search: <span className='text-xl font-bold'>{searchName}</span> 
+                <button
+                    onClick={() => {
+                        setSearchNameMode(false);
+                        if (currentPage === 1){
+                            fetchDoctorsData(1);
+                        }else{
+                            handlePageChange(1);
+                        }
+                    }}
+                    className='ml-1 p-1 bg-red-500 text-white rounded mb-4'>
+                    Remove search
                 </button>
             </div>
 
@@ -471,7 +494,7 @@ const DoctorManagement = () => {
             </div>
 
             {/* Pagination */}
-            <div className="flex justify-center mt-4">
+            <div className={`${searchNameMode ? "hidden" : "flex"} justify-center mt-4`}>
                 <button
                     onClick={() => handlePageChange(currentPage - 1)}
                     disabled={currentPage === 1}

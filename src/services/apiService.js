@@ -81,7 +81,7 @@ export const getDoctorsWithPagination = (page = 1, limit = 2) => {
     });
 };
 
-export const fetchDoctorByName = (name) => {
+export const fetchDoctorsByName = (name) => {
     return API.get('api/doctors/search', {
         params: {
             name
