@@ -11,6 +11,10 @@ import HeaderDoctor from './components/HeaderDoctor';
 import HeaderAdmin from './components/HeaderAdmin';
 import Payments from './components/Payments';
 
+import DoctorManagement from './pages/Admin/DoctorManagement';
+import ClinicManagement from './pages/Admin/ClinicManagement';
+import ClinicDetail from './pages/Admin/ClinicDetail';
+
 function App() {
   const [token, setToken] = useState(localStorage.getItem('token'));
   const [role, setRole] = useState(localStorage.getItem('role')); // Thêm role
@@ -73,12 +77,38 @@ function App() {
             </ProtectedRoute>
           }
         />
+
+        <Route
+          path="/doctorManagement"
+          element={
+            <ProtectedRoute>
+              <DoctorManagement />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/ClinicManagement"
+          element={
+            <ProtectedRoute>
+              <ClinicManagement />
+            </ProtectedRoute>
+          }
+        />
+        <Route path="/clinic-detail/:clinicId" element={
+          <ProtectedRoute>
+            <ClinicDetail />
+          </ProtectedRoute>
+        } />
+
+
+
         <Route path="/" element={<Navigate to={token ? "/profile" : "/login"} />} />
         <Route path="/payments" element={
           <ProtectedRoute>
             <Payments />
           </ProtectedRoute>
-          } 
+        }
         />
       </Routes>
     </Router>
