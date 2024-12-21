@@ -10,6 +10,7 @@ import HeaderPatient from './components/HeaderPatient';
 import HeaderDoctor from './components/HeaderDoctor';
 import HeaderAdmin from './components/HeaderAdmin';
 import Payments from './components/Payments';
+import RevenueChart from './pages/Admin/Revenue';
 
 function App() {
   const [token, setToken] = useState(localStorage.getItem('token'));
@@ -77,6 +78,12 @@ function App() {
         <Route path="/payments" element={
           <ProtectedRoute>
             <Payments />
+          </ProtectedRoute>
+          } 
+        />
+        <Route path="/revenue" element={
+          <ProtectedRoute>
+            <RevenueChart />
           </ProtectedRoute>
           } 
         />

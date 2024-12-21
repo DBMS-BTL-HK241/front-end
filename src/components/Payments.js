@@ -114,16 +114,38 @@ function Payments() {
     }
 
     try {
-      await axios.put(
+      await axios.post(
         `http://localhost:3001/payments/update_invoice/${editableInvoice.id}`,
         editableInvoice,
         { headers: { Authorization: `Bearer ${token}` } }
       );
       fetchInvoices();
       setEditableInvoice(null);
+      closeModal();
       alert("Invoice updated successfully!");
     } catch (error) {
       console.error("Error updating invoice:", error);
+    }
+  };
+
+  
+  const handleDelete = async () => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      alert("Token is missing. Please log in to continue.");
+      return;
+    }
+
+    try {
+      await axios.delete(
+        `http://localhost:3001/payments/delete_all_bills`,
+        editableInvoice,
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      fetchInvoices();
+      alert("Delete All Successfully!");
+    } catch (error) {
+      console.error("Error Delete Them All", error);
     }
   };
 
@@ -181,7 +203,10 @@ function Payments() {
                 <td className="px-4 py-2">
                   {invoice.status === "Unpaid" && (
                     <button
-                      onClick={() => handlePayment(invoice.id)}
+                      onClick={(event) => {
+                        event.stopPropagation();
+                        handlePayment(invoice.id);
+                      }}
                       className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
                     >
                       Pay Now
@@ -606,6 +631,12 @@ function Payments() {
           </div>
         </div>
       )}
+    <button
+      onClick={() => handleDelete()}
+      className="px-4 py-2 ml-4 bg-red-500 text-white rounded hover:bg-red-600"
+    >
+      Delete All
+    </button>
     </div>
   );
 }
